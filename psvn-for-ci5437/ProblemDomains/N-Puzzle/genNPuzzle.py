@@ -54,8 +54,8 @@ for i in range(n_sqrt * (n_sqrt - 1)):
     texto += 'LABEL DOWN\n'
 
 texto += '\nGOAL '
-for i in range(1,n):
-    texto += str(i) + ' '
 texto += 'b'
+for i in range(1,n):
+    texto += ' ' + str(i)
 
 print(texto)
