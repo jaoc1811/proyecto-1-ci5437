@@ -7,6 +7,10 @@ PSVNOPT = --history_len=0
 	$(CXX) $(OPT) ../../global/idaStar.cpp -include $< -o $@
 	rm -f $*.c
 
+%.aStar: %.c ../../global/aStar.cpp
+	$(CXX) $(OPT) ../../global/aStar.cpp ../../global/node.cpp -include $< -o $@
+	rm -f $*.c
+
 psvn2c_core.c:
 	cp ../../src/psvn2c_core.c ./psvn2c_core.c
 
