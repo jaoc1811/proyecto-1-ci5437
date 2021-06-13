@@ -3,19 +3,14 @@
 #include "node.hpp"
 #include <queue>
 #include <map>
+#include "heuristics.hpp"
+#include <time.h>
+
 using namespace std;
 
 #define MAX_LINE_LENGTH 999
 
 const int infinity = std::numeric_limits<int>::max();
-
-unsigned pupu(state_t *state)
-{
-  if (is_goal(state))
-    return 0;
-  else
-    return 1;
-}
 
 node *aStar(state_t init, unsigned (*h)(state_t *))
 {
@@ -63,6 +58,7 @@ int main()
   ssize_t nchars;
   state_t state_init; // state_t is defined by the PSVN API. It is the type used for individual states.
 
+
   // READ A LINE OF INPUT FROM stdin
   printf("Please enter a state followed by ENTER: ");
   if (fgets(str, sizeof str, stdin) == NULL)
@@ -83,14 +79,41 @@ int main()
   print_state(stdout, &state_init);
   printf("\n");
 
-  node *solution = aStar(state_init, pupu);
+
+  // cout << manhattan(&state_init) <<endl;
+  printf("selected heuristic: \n"
+          "1) manhattan\n"
+          "2) pupu\n");
+  char input;
+  cin >> input;
+
+  node *solution;
+  clock_t t;
+  t = clock();
+  switch (input){
+    case '1':
+      solution = aStar(state_init, manhattan);
+      break;     
+    case '2':
+      solution = aStar(state_init, pupu);
+      break;     
+  }
+  t = clock() - t;
+  if (!solution){
+    cout << "No solution found" << endl;
+    return 0;
+  }
   vector<int> path;
   solution->extract_path(path);
+  cout << "Solution: ";
   for (int i : path)
   {
-    cout << get_fwd_rule_label(i) << endl;
+    cout << get_fwd_rule_label(i) << " ";
   }
+  
   cout << endl;
+  cout << "Movements: " << path.size() << endl;
+  printf ("It took: %f seconds.\n",((float)t)/CLOCKS_PER_SEC);
 
   return 0;
 }

@@ -4,11 +4,11 @@ OPT = -Wall -O3 -Wno-unused-function -Wno-unused-variable -g
 PSVNOPT = --history_len=0
 
 %.idaStar: %.c ../../global/idaStar.cpp
-	$(CXX) $(OPT) ../../global/idaStar.cpp -include $< -o $@
+	$(CXX) $(OPT) ../../global/idaStar.cpp ../../global/heuristics.cpp -include $< -o $@
 	rm -f $*.c
 
 %.aStar: %.c ../../global/aStar.cpp
-	$(CXX) $(OPT) ../../global/aStar.cpp ../../global/node.cpp -include $< -o $@
+	$(CXX) $(OPT) ../../global/aStar.cpp ../../global/node.cpp ../../global/heuristics.cpp -include $< -o $@
 	rm -f $*.c
 
 psvn2c_core.c:
