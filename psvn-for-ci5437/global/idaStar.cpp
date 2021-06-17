@@ -2,7 +2,6 @@
 #include <vector>
 #include <iostream>
 #include "heuristics.hpp"
-#include <map>
 #include <time.h>
 
 using namespace std;
@@ -14,9 +13,8 @@ state_t state;
 state_t state_aux;
 state_t state_prunning_aux;
 vector<int> path;
-map<string, int> labels {{"RIGHT",1},{"LEFT",-1},{"UP",2},{"DOWN", -2}};
 
-pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*heu)(state_t *))
+pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*heu)(state_t *), int history)
 {
     // base cases
     unsigned h = heu(&state);
@@ -33,21 +31,23 @@ pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*
 
     while ((ruleid = next_ruleid(&iter)) >= 0)
     {
-        if (path.size() && !(labels[get_fwd_rule_label(ruleid)] + labels[get_fwd_rule_label(path.back())])){
-            continue;
-        }
+        if( fwd_rule_valid_for_history(history, ruleid) == 0 ) continue;
+
         unsigned cost = g + get_fwd_rule_cost(ruleid);
         copy_state(&state_aux, &state);
         apply_fwd_rule(ruleid, &state_aux, &state);
+
         if (heu(&state) < infinity)
         {
             path.push_back(ruleid);
-            pair<bool, unsigned> p = f_bounded_dfs_visit(bound, cost, heu);
+            int new_history = next_fwd_history(history, ruleid); // next history for child
+            pair<bool, unsigned> p = f_bounded_dfs_visit(bound, cost, heu, new_history);
             if (p.first)
                 return p;
             t = min(t, p.second);
             path.pop_back();
         }
+
         copy_state(&state_aux, &state);
         apply_bwd_rule(ruleid, &state_aux, &state);
     }
@@ -62,7 +62,7 @@ void ida_search(state_t init, unsigned (*heu)(state_t *))
     while (true)
     {
         cout << "Running with bound: " << bound << endl;
-        pair<bool, unsigned> p = f_bounded_dfs_visit(bound, 0, heu);
+        pair<bool, unsigned> p = f_bounded_dfs_visit(bound, 0, heu, init_history);
         if (p.first)
             return;
         bound = p.second;
