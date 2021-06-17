@@ -12,6 +12,7 @@ state_t state;
 state_t state_aux;
 state_t state_prunning_aux;
 vector<int> path;
+unsigned state_count = 0;
 
 pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*heu)(state_t *), int history)
 {
@@ -38,6 +39,7 @@ pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*
 
         if (heu(&state) < infinity)
         {
+            state_count++;
             path.push_back(ruleid);
             int new_history = next_fwd_history(history, ruleid); // next history for child
             pair<bool, unsigned> p = f_bounded_dfs_visit(bound, cost, heu, new_history);
@@ -110,17 +112,20 @@ int main()
             break;     
         case '2':
             load_pdb();
-            break;     
+            ida_search(state_init, pdb);
+            break;
     }
     t = clock() - t;
 
+    cout << "Solution: ";
     for (int i : path)
     {
-        cout << get_fwd_rule_label(i) << endl;
+        cout << get_fwd_rule_label(i) << " ";
     }
     cout << endl;
     cout << "Movements: " << path.size() << endl;
     printf ("It took: %f seconds.\n",((float)t)/CLOCKS_PER_SEC);
+    cout << "States generated: " << state_count << " States" << endl;
 
     return 0;
 }

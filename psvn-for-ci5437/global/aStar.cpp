@@ -12,6 +12,8 @@ using namespace std;
 
 const int infinity = std::numeric_limits<int>::max();
 
+unsigned state_count = 0;
+
 node *aStar(state_t init, unsigned (*h)(state_t *))
 {
 
@@ -83,7 +85,7 @@ int main()
   // cout << manhattan(&state_init) <<endl;
   printf("selected heuristic: \n"
           "1) manhattan\n"
-          "2) pupu\n");
+          "2) pdb\n");
   char input;
   cin >> input;
 
@@ -93,10 +95,11 @@ int main()
   switch (input){
     case '1':
       solution = aStar(state_init, manhattan);
-      break;     
+      break;
     case '2':
-      solution = aStar(state_init, pupu);
-      break;     
+      load_pdb();
+      solution = aStar(state_init, pdb);
+      break;
   }
   t = clock() - t;
   if (!solution){
@@ -114,6 +117,7 @@ int main()
   cout << endl;
   cout << "Movements: " << path.size() << endl;
   printf ("It took: %f seconds.\n",((float)t)/CLOCKS_PER_SEC);
+  cout << "States generated: " << state_count << " States" << endl;
 
   return 0;
 }

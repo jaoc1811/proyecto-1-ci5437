@@ -7,7 +7,7 @@ using namespace std;
 vector<abstraction_t *> abstractions;
 vector<state_map_t *> state_maps;
 
-void load_pdb(){
+void load_pdb() {
     int i = 1;
     while(true){
         string file_name = "abs"+to_string(i);
@@ -38,7 +38,17 @@ vector<int> split (const string &s, char delim) {
     return result;
 }
 
-unsigned manhattan(state_t *state){
+unsigned pdb(state_t *state) {
+    state_t abs_state;
+    unsigned total = 0;
+    for(unsigned i = 0; i < abstractions.size(); i++) {
+        abstract_state(abstractions[i], state, &abs_state);
+        total += *state_map_get(state_maps[i], &abs_state);
+    }
+    return total;
+}
+
+unsigned manhattan(state_t *state) {
     char str[512];
     sprint_state(str,512,state);
     vector<int> v = split(str, ' ');
@@ -60,8 +70,7 @@ unsigned manhattan(state_t *state){
     return (unsigned) sum;
 }
 
-unsigned pupu(state_t *state)
-{
+unsigned pupu(state_t *state) {
     if (is_goal(state))
         return 0;
     else
