@@ -1,9 +1,26 @@
 #include "heuristics.hpp"
-#include <vector>
 #include <string>
 #include <sstream>
 #include <cmath>
 using namespace std;
+
+vector<abstraction_t *> abstractions;
+vector<state_map_t *> state_maps;
+
+void load_pdb(){
+    int i = 1;
+    while(true){
+        string file_name = "abs"+to_string(i);
+        FILE *f = fopen((file_name+".pdb").c_str(),"r");
+        if (!f){
+            break;
+        }
+        state_maps.push_back(read_state_map(f));
+        abstractions.push_back(read_abstraction_from_file((file_name+".abst").c_str()));
+        fclose(f);
+        i++;
+    }
+}
 
 vector<int> split (const string &s, char delim) {
     vector<int> result;

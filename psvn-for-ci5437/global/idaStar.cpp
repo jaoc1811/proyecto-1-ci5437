@@ -1,5 +1,4 @@
 #include <limits>
-#include <vector>
 #include <iostream>
 #include "heuristics.hpp"
 #include <time.h>
@@ -98,7 +97,7 @@ int main()
 
     printf("selected heuristic: \n"
             "1) manhattan\n"
-            "2) pupu\n");
+            "2) pdb\n");
     char input;
     cin >> input;
 
@@ -110,7 +109,7 @@ int main()
             ida_search(state_init, manhattan);
             break;     
         case '2':
-            ida_search(state_init, pupu);
+            load_pdb();
             break;     
     }
     t = clock() - t;
