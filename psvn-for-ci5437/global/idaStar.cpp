@@ -67,6 +67,7 @@ void ida_search(state_t init, unsigned (*heu)(state_t *))
     {
         bound_state_count = 0;
         cout << "Running with bound: " << bound;
+        fflush(stdout);
         pair<bool, unsigned> p = f_bounded_dfs_visit(bound, 0, heu, init_history);
         cout << " (" << bound_state_count << " states generated)" << endl;
         if (p.first)
