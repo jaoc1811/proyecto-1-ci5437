@@ -22,7 +22,7 @@ pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*
     unsigned f = g + h;
     if (f > bound)
         return {false, f};
-    if (h == 0)
+    if (is_goal(&state))
         return {true, g};
 
     unsigned t = infinity;
@@ -120,11 +120,17 @@ int main()
         ida_search(state_init, manhattan);
         break;
     case '2':
+        cout << "Loading PDBs..." << endl;
         load_pdb();
+        t = clock();
+        cout << "PDBs loaded" << endl;
         ida_search(state_init, pdb_additive);
         break;
     case '3':
+        cout << "Loading PDBs..." << endl;
         load_pdb();
+        t = clock();
+        cout << "PDBs loaded" << endl;
         ida_search(state_init, pdb_max);
         break;
     }

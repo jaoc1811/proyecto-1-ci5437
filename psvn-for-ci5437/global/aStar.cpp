@@ -61,7 +61,6 @@ int main()
   ssize_t nchars;
   state_t state_init; // state_t is defined by the PSVN API. It is the type used for individual states.
 
-
   // READ A LINE OF INPUT FROM stdin
   printf("Please enter a state followed by ENTER: ");
   if (fgets(str, sizeof str, stdin) == NULL)
@@ -82,34 +81,41 @@ int main()
   print_state(stdout, &state_init);
   printf("\n");
 
-
   // cout << manhattan(&state_init) <<endl;
   printf("Choose heuristic: \n"
-          "1) manhattan\n"
-          "2) pdb additive\n"
-          "3) pdb max\n"
-          "Selected: ");
+         "1) manhattan\n"
+         "2) pdb additive\n"
+         "3) pdb max\n"
+         "Selected: ");
   char input;
   cin >> input;
 
   node *solution;
   clock_t t;
   t = clock();
-  switch (input){
-    case '1':
-      solution = aStar(state_init, manhattan);
-      break;
-    case '2':
-      load_pdb();
-      solution = aStar(state_init, pdb_additive);
-      break;
-    case '3':
-      load_pdb();
-      solution = aStar(state_init, pdb_max);
-      break;
+  switch (input)
+  {
+  case '1':
+    solution = aStar(state_init, manhattan);
+    break;
+  case '2':
+    cout << "Loading PDBs..." << endl;
+    load_pdb();
+    t = clock();
+    cout << "PDBs loaded" << endl;
+    solution = aStar(state_init, pdb_additive);
+    break;
+  case '3':
+    cout << "Loading PDBs..." << endl;
+    load_pdb();
+    t = clock();
+    cout << "PDBs loaded" << endl;
+    solution = aStar(state_init, pdb_max);
+    break;
   }
   t = clock() - t;
-  if (!solution){
+  if (!solution)
+  {
     cout << "No solution found" << endl;
     return 0;
   }
@@ -120,10 +126,10 @@ int main()
   {
     cout << get_fwd_rule_label(i) << " ";
   }
-  
+
   cout << endl;
   cout << "Movements: " << path.size() << endl;
-  printf ("It took: %f seconds.\n",((float)t)/CLOCKS_PER_SEC);
+  printf("It took: %f seconds.\n", ((float)t) / CLOCKS_PER_SEC);
   cout << "States generated: " << state_count << " States" << endl;
 
   return 0;
