@@ -97,9 +97,11 @@ int main()
     print_state(stdout, &state_init);
     printf("\n");
 
-    printf("selected heuristic: \n"
+    printf("Choose heuristic: \n"
             "1) manhattan\n"
-            "2) pdb\n");
+            "2) pdb additive\n"
+            "3) pdb max\n"
+            "Selected: ");
     char input;
     cin >> input;
 
@@ -112,7 +114,11 @@ int main()
             break;     
         case '2':
             load_pdb();
-            ida_search(state_init, pdb);
+            ida_search(state_init, pdb_additive);
+            break;
+        case '3':
+            load_pdb();
+            ida_search(state_init, pdb_max);
             break;
     }
     t = clock() - t;

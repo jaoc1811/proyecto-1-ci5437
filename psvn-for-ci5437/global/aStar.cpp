@@ -29,6 +29,7 @@ node *aStar(state_t init, unsigned (*h)(state_t *))
 
     if (distance.count(hash_state(ns)) == 0 || n->g < distance[hash_state(ns)])
     {
+      state_count++;
       distance[hash_state(ns)] = n->g;
 
       if (is_goal(ns))
@@ -83,9 +84,11 @@ int main()
 
 
   // cout << manhattan(&state_init) <<endl;
-  printf("selected heuristic: \n"
+  printf("Choose heuristic: \n"
           "1) manhattan\n"
-          "2) pdb\n");
+          "2) pdb additive\n"
+          "3) pdb max\n"
+          "Selected: ");
   char input;
   cin >> input;
 
@@ -98,7 +101,11 @@ int main()
       break;
     case '2':
       load_pdb();
-      solution = aStar(state_init, pdb);
+      solution = aStar(state_init, pdb_additive);
+      break;
+    case '3':
+      load_pdb();
+      solution = aStar(state_init, pdb_max);
       break;
   }
   t = clock() - t;

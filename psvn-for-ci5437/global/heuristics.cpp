@@ -38,7 +38,7 @@ vector<int> split (const string &s, char delim) {
     return result;
 }
 
-unsigned pdb(state_t *state) {
+unsigned pdb_additive(state_t *state) {
     state_t abs_state;
     unsigned total = 0;
     for(unsigned i = 0; i < abstractions.size(); i++) {
@@ -46,6 +46,18 @@ unsigned pdb(state_t *state) {
         total += *state_map_get(state_maps[i], &abs_state);
     }
     return total;
+}
+
+unsigned pdb_max(state_t *state) {
+    state_t abs_state;
+    unsigned max = 0;
+    for(unsigned i = 0; i < abstractions.size(); i++) {
+        abstract_state(abstractions[i], state, &abs_state);
+        unsigned pdb = *state_map_get(state_maps[i], &abs_state);
+        if(pdb > max)
+            max = pdb;
+    }
+    return max;
 }
 
 unsigned manhattan(state_t *state) {
