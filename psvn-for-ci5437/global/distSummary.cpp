@@ -10,9 +10,67 @@ Copyright (C) 2013 by the PSVN Research Group, University of Alberta
 
 #include <vector>
 #include "priority_queue.hpp"
+#include "sys/sysinfo.h"
+#include <iostream>
+std::vector<double> numAtDarr;
+std::vector<double> numAtDarr2;
+int64_t totalNodes, numAtD;  // counters
+
+/*
+  Imprime la memoria virtual (ram y swap) usada actualmente.
+*/
+void print_memory_used(void) {
+  struct sysinfo memInfo;
+  sysinfo (&memInfo);
+  double virtualMemUsed = memInfo.totalram - memInfo.freeram;
+  //Add other values in next statement to avoid int overflow on right hand side...
+  virtualMemUsed += memInfo.totalswap - memInfo.freeswap;
+  virtualMemUsed *= memInfo.mem_unit;
+  std::cout << virtualMemUsed / (1024*1024*1024) << " Gb\n";
+}
+
+void print_results(void){
+    printf("%"PRIu64" states in total.\n", totalNodes);
+    for(int i=1;i < numAtDarr.size();i++) {
+        numAtDarr2.push_back(numAtDarr[i]/numAtDarr[i-1]);
+    }
+    double p = 0;
+    for(int i=0;i < numAtDarr2.size();i++) {
+        p += numAtDarr[i]*numAtDarr2[i];
+    }
+    double sum = 0;
+    for(int i=0;i < numAtDarr.size()-1;i++){
+       sum += numAtDarr[i];
+    }
+    double result = p/sum;
+    printf("Ramification Factor: %lf\n", result);
+}
+
+
+/*
+  Imprime los resultados actuales y finaliza la ejecucion.
+*/
+void handler_ctrl_c(int s){
+  printf("No solution found.\n");
+  print_results();
+  exit(1);
+}
+
+/*
+  Para poder parar la ejecucion.
+*/
+void set_handler(void) {
+  struct sigaction sigIntHandler;
+  sigIntHandler.sa_handler = handler_ctrl_c;
+  sigemptyset(&sigIntHandler.sa_mask);
+  sigIntHandler.sa_flags = 0;
+  sigaction(SIGINT, &sigIntHandler, NULL);
+}
 
 int main(int argc, char **argv) {
-    int64_t totalNodes, numAtD;  // counters
+
+    set_handler();
+
     state_t state, child;   // NOTE: "child" will be a predecessor of state, not a successor
     int d, ruleid;
     ruleid_iterator_t iter;
@@ -31,10 +89,12 @@ int main(int argc, char **argv) {
     d = 0;
     numAtD = 0;
     totalNodes = 0;
+
     while( !open.Empty() ) {
         // get current distance from goal; since operator costs are
         // non-negative this distance is monotonically increasing
         if( open.CurrentPriority() > d ) {
+            numAtDarr.push_back((double)numAtD);
             printf("%"PRId64" states at distance %d\n", numAtD, d);
             d = open.CurrentPriority();
             numAtD = 0;
@@ -69,13 +129,12 @@ int main(int argc, char **argv) {
             }
         }
     }
-    
     // print last level and total states
     if( numAtD > 0 ) {
+        numAtDarr.push_back((double)numAtD);
         printf("%"PRId64" states at distance %d\n", numAtD, d);
     }
-    printf("%"PRIu64" states in total.\n", totalNodes);
-    
+    print_results();
     // write the state map to a file
     if( argc >= 2 ) {
         file = fopen(argv[1], "w");

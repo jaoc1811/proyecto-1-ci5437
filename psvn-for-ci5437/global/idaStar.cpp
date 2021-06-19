@@ -22,7 +22,7 @@ pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*
     unsigned f = g + h;
     if (f > bound)
         return {false, f};
-    if (is_goal(&state))
+    if (h==0)
         return {true, g};
 
     unsigned t = infinity;
