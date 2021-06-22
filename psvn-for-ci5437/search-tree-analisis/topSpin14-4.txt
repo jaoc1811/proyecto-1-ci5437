@@ -1,0 +1,13 @@
+1 states at distance 0
+14 states at distance 1
+133 states at distance 2
+1106 states at distance 3
+8631 states at distance 4
+64722 states at distance 5
+467257 states at distance 6
+3239166 states at distance 7
+21292544 states at distance 8
+No solution found.
+31964930 states in total.
+Ramification Factor: 6.631413
+Running by 100 s before run out of RAM
