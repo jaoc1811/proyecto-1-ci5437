@@ -83,3 +83,19 @@
 16777216 states in total.
 Ramification Factor: 1.000000
 19.07 s to finish
+
+1 states at distance 0
+3 states at distance 1
+15 states at distance 2
+75 states at distance 3
+393 states at distance 4
+2109 states at distance 5
+11487 states at distance 6
+63375 states at distance 7
+352755 states at distance 8
+1978341 states at distance 9
+11161197 states at distance 10
+No solution found.
+37158952 states in total.
+Ramification Factor: 5.633982
+Running by 15 s before run out of RAM
