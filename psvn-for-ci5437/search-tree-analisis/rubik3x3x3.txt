@@ -1,3 +1,4 @@
+40 segundos
 1 states at distance 0
 18 states at distance 1
 243 states at distance 2
@@ -7,3 +8,14 @@
 No solution found.
 6312369 states in total.
 Ramification Factor: 13.299844
+
+32 segundos
+1 states at distance 0
+18 states at distance 1
+324 states at distance 2
+5832 states at distance 3
+104976 states at distance 4
+1889568 states at distance 5
+No solution found.
+8711545 states in total.
+Ramification Factor: 18.000000

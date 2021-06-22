@@ -41,6 +41,11 @@ psvn2c_abstraction.c:
 	@$(CXX) $(OPT) ../global/distSummary.cpp -include $< -o $@
 	@rm -f $*.c
 
+%.distSummaryNoPrunning: %.c ../global/distSummaryNoPrunning.cpp
+	@echo "**** Constructing $@ ..."
+	@$(CXX) $(OPT) ../global/distSummaryNoPrunning.cpp -include $< -o $@
+	@rm -f $*.c
+
 %.generator: %.c ../global/generator.cpp
 	@echo "**** Constructing $@ ..."
 	@$(CXX) $(OPT) ../global/generator.cpp -include $< -o $@
