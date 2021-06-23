@@ -16,15 +16,16 @@ vector<int> path;
 unsigned state_count = 0;
 unsigned bound_state_count;
 clock_t t;
+struct sysinfo memInfo;
+double virtualMemUsed;
 
 void print_memory_used(void) {
   struct sysinfo memInfo;
   sysinfo (&memInfo);
-  double virtualMemUsed = memInfo.totalram - memInfo.freeram;
-  //Add other values in next statement to avoid int overflow on right hand side...
-  virtualMemUsed += memInfo.totalswap - memInfo.freeswap;
-  virtualMemUsed *= memInfo.mem_unit;
-  std::cout << virtualMemUsed / (1024*1024*1024) << " Gb\n";
+  double virtualMemUsed2 = memInfo.totalram - memInfo.freeram;
+  virtualMemUsed2 -= virtualMemUsed;
+  virtualMemUsed2 *= memInfo.mem_unit;
+  std::cout << virtualMemUsed2 / (1024*1024*1024) << " Gb\n";
 }
 
 void print_results() {
@@ -114,6 +115,7 @@ void ida_search(state_t init, unsigned (*heu)(state_t *))
 
 int main()
 {
+    sysinfo (&memInfo);
     // VARIABLES FOR INPUT
     char str[MAX_LINE_LENGTH + 1];
     ssize_t nchars;
@@ -148,7 +150,7 @@ int main()
     cin >> input;
 
     t = clock();
-
+    virtualMemUsed = memInfo.totalram - memInfo.freeram;
     switch (input)
     {
     case '1':

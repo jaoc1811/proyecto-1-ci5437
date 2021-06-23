@@ -15,21 +15,22 @@ const int infinity = std::numeric_limits<int>::max();
 
 unsigned state_count = 0;
 clock_t t;
+struct sysinfo memInfo;
+double virtualMemUsed;
 
 void print_memory_used(void) {
   struct sysinfo memInfo;
   sysinfo (&memInfo);
-  double virtualMemUsed = memInfo.totalram - memInfo.freeram;
-  //Add other values in next statement to avoid int overflow on right hand side...
-  virtualMemUsed += memInfo.totalswap - memInfo.freeswap;
-  virtualMemUsed *= memInfo.mem_unit;
-  std::cout << virtualMemUsed / (1024*1024*1024) << " Gb\n";
+  double virtualMemUsed2 = memInfo.totalram - memInfo.freeram;
+  virtualMemUsed2 -= virtualMemUsed;
+  virtualMemUsed2 *= memInfo.mem_unit;
+  std::cout << virtualMemUsed2 / (1024*1024*1024) << " Gb\n";
 }
 
 void print_results() {
     cout << "States generated: " << state_count << endl;
     t = clock() - t;
-    int tPerSec = ((float)t) / CLOCKS_PER_SEC;
+    float tPerSec = ((float)t) / CLOCKS_PER_SEC;
     cout << "Time: " << tPerSec << " seconds" << endl;
     cout << "States generated per second: " << (state_count/tPerSec) << endl;
     print_memory_used();
@@ -92,6 +93,7 @@ node *aStar(state_t init, unsigned (*h)(state_t *))
 
 int main()
 {
+  sysinfo (&memInfo);
   char str[MAX_LINE_LENGTH + 1];
   ssize_t nchars;
   state_t state_init; // state_t is defined by the PSVN API. It is the type used for individual states.
@@ -127,6 +129,7 @@ int main()
 
   node *solution;
   t = clock();
+  virtualMemUsed = memInfo.totalram - memInfo.freeram;
   switch (input)
   {
   case '1':
