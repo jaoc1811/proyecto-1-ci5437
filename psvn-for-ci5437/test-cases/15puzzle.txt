@@ -1,0 +1,31 @@
+Estado dificil
+15 2 12 11 14 13 9 5 1 3 8 7 b 10 6 4
+
+IDA* PDB
+Movements: 65
+Total states: 1629636925
+Time: 386.586 seconds
+States per second: 4.21546e+06
+1.07502 Gb
+
+A* PDB
+No solution found.
+States generated: 47200000
+Time: 268.459 seconds
+States generated per second: 175818
+12.4602 Gb (Ran out)
+
+IDA* Manhattan
+No solution found.
+Total states: 478538337
+Time: 1791.21 seconds
+States per second: 267160
+0.0547333 Gb
+
+A* Manhattan
+No solution found.
+States generated: 48000000
+Time: 832.368 seconds
+States generated per second: 57666.8
+12.4159 Gb
+
