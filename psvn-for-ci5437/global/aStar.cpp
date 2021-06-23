@@ -93,6 +93,7 @@ node *aStar(state_t init, unsigned (*h)(state_t *))
 
 int main()
 {
+  set_handler();
   sysinfo (&memInfo);
   char str[MAX_LINE_LENGTH + 1];
   ssize_t nchars;
@@ -150,7 +151,6 @@ int main()
     solution = aStar(state_init, pdb_max);
     break;
   }
-  t = clock() - t;
   if (!solution)
   {
     cout << "No solution found" << endl;

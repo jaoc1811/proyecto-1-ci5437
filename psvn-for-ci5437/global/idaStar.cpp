@@ -113,8 +113,8 @@ void ida_search(state_t init, unsigned (*heu)(state_t *))
     }
 }
 
-int main()
-{
+int main(){
+    set_handler();
     sysinfo (&memInfo);
     // VARIABLES FOR INPUT
     char str[MAX_LINE_LENGTH + 1];
@@ -171,7 +171,6 @@ int main()
         ida_search(state_init, pdb_max);
         break;
     }
-    t = clock() - t;
 
     cout << "Solution: ";
     for (int i : path)
