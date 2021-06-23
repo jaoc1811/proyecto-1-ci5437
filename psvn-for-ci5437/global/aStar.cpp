@@ -47,7 +47,7 @@ void set_handler(void) {
     sigemptyset(&sigIntHandler.sa_mask);
     sigIntHandler.sa_flags = 0;
     sigaction(SIGINT, &sigIntHandler, NULL);
-}}
+}
 
 node *aStar(state_t init, unsigned (*h)(state_t *))
 {
