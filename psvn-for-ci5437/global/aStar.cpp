@@ -5,6 +5,7 @@
 #include <map>
 #include "heuristics.hpp"
 #include <time.h>
+#include "sys/sysinfo.h"
 
 using namespace std;
 
@@ -13,6 +14,40 @@ using namespace std;
 const int infinity = std::numeric_limits<int>::max();
 
 unsigned state_count = 0;
+clock_t t;
+
+void print_memory_used(void) {
+  struct sysinfo memInfo;
+  sysinfo (&memInfo);
+  double virtualMemUsed = memInfo.totalram - memInfo.freeram;
+  //Add other values in next statement to avoid int overflow on right hand side...
+  virtualMemUsed += memInfo.totalswap - memInfo.freeswap;
+  virtualMemUsed *= memInfo.mem_unit;
+  std::cout << virtualMemUsed / (1024*1024*1024) << " Gb\n";
+}
+
+void print_results() {
+    cout << "States generated: " << state_count << endl;
+    t = clock() - t;
+    int tPerSec = ((float)t) / CLOCKS_PER_SEC;
+    cout << "Time: " << tPerSec << " seconds" << endl;
+    cout << "States generated per second: " << (state_count/tPerSec) << endl;
+    print_memory_used();
+}
+
+void handler_ctrl_c(int s) {
+  printf("No solution found.\n");
+  print_results();
+  exit(1);
+}
+
+void set_handler(void) {
+    struct sigaction sigIntHandler;
+    sigIntHandler.sa_handler = handler_ctrl_c;
+    sigemptyset(&sigIntHandler.sa_mask);
+    sigIntHandler.sa_flags = 0;
+    sigaction(SIGINT, &sigIntHandler, NULL);
+}}
 
 node *aStar(state_t init, unsigned (*h)(state_t *))
 {
@@ -91,7 +126,6 @@ int main()
   cin >> input;
 
   node *solution;
-  clock_t t;
   t = clock();
   switch (input)
   {
@@ -129,8 +163,7 @@ int main()
 
   cout << endl;
   cout << "Movements: " << path.size() << endl;
-  printf("It took: %f seconds.\n", ((float)t) / CLOCKS_PER_SEC);
-  cout << "States generated: " << state_count << " States" << endl;
+  print_results();
 
   return 0;
 }

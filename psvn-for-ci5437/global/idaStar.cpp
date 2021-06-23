@@ -2,6 +2,7 @@
 #include <iostream>
 #include "heuristics.hpp"
 #include <time.h>
+#include "sys/sysinfo.h"
 
 using namespace std;
 
@@ -14,6 +15,41 @@ state_t state_prunning_aux;
 vector<int> path;
 unsigned state_count = 0;
 unsigned bound_state_count;
+clock_t t;
+
+void print_memory_used(void) {
+  struct sysinfo memInfo;
+  sysinfo (&memInfo);
+  double virtualMemUsed = memInfo.totalram - memInfo.freeram;
+  //Add other values in next statement to avoid int overflow on right hand side...
+  virtualMemUsed += memInfo.totalswap - memInfo.freeswap;
+  virtualMemUsed *= memInfo.mem_unit;
+  std::cout << virtualMemUsed / (1024*1024*1024) << " Gb\n";
+}
+
+void print_results() {
+    cout << "Total states: " << state_count << endl;
+    t = clock() - t;
+    float tPerSec = ((float)t) / CLOCKS_PER_SEC;
+    cout << "Time: " << tPerSec << " seconds" << endl;
+    cout << "States per second: " << (state_count/tPerSec) << endl;
+    print_memory_used();
+}
+
+void handler_ctrl_c(int s) {
+  printf("No solution found.\n");
+  print_results();
+  exit(1);
+}
+
+void set_handler(void) {
+    struct sigaction sigIntHandler;
+    sigIntHandler.sa_handler = handler_ctrl_c;
+    sigemptyset(&sigIntHandler.sa_mask);
+    sigIntHandler.sa_flags = 0;
+    sigaction(SIGINT, &sigIntHandler, NULL);
+}
+
 
 pair<bool, unsigned> f_bounded_dfs_visit(unsigned bound, unsigned g, unsigned (*heu)(state_t *), int history)
 {
@@ -111,7 +147,6 @@ int main()
     char input;
     cin >> input;
 
-    clock_t t;
     t = clock();
 
     switch (input)
@@ -143,8 +178,7 @@ int main()
     }
     cout << endl;
     cout << "Movements: " << path.size() << endl;
-    printf("It took: %f seconds.\n", ((float)t) / CLOCKS_PER_SEC);
-    cout << "States generated: " << state_count << " States" << endl;
+    print_results();
 
     return 0;
 }
