@@ -17,6 +17,7 @@ unsigned state_count = 0;
 clock_t t;
 struct sysinfo memInfo;
 double virtualMemUsed;
+double exitMemoryCheck;
 
 void print_memory_used(void) {
   struct sysinfo memInfo;
@@ -66,6 +67,18 @@ node *aStar(state_t init, unsigned (*h)(state_t *))
     if (distance.count(hash_state(ns)) == 0 || n->g < distance[hash_state(ns)])
     {
       state_count++;
+      if((state_count % 100000) == 0)
+      {
+        sysinfo (&memInfo);
+        exitMemoryCheck = memInfo.freeram * memInfo.mem_unit;
+        exitMemoryCheck /= (1024*1024*1024);
+        cout << exitMemoryCheck << endl;
+        if(exitMemoryCheck <= 0.5)
+        {
+          handler_ctrl_c(1);
+        }
+      }
+
       distance[hash_state(ns)] = n->g;
 
       if (is_goal(ns))
@@ -94,7 +107,6 @@ node *aStar(state_t init, unsigned (*h)(state_t *))
 int main()
 {
   set_handler();
-  sysinfo (&memInfo);
   char str[MAX_LINE_LENGTH + 1];
   ssize_t nchars;
   state_t state_init; // state_t is defined by the PSVN API. It is the type used for individual states.
@@ -130,6 +142,7 @@ int main()
 
   node *solution;
   t = clock();
+  sysinfo (&memInfo);
   virtualMemUsed = memInfo.totalram - memInfo.freeram;
   switch (input)
   {
