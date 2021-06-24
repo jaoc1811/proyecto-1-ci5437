@@ -1,0 +1,92 @@
+Facil
+0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 
+
+IDA*
+Movements: 7
+Total states: 24
+Time: 9.1e-05 seconds
+States per second: 263736
+5.63998 Gb
+
+A*
+Movements: 7
+States generated: 8
+Time: 8.1e-05 seconds
+States generated per second: 98765.4
+5.66782 Gb
+
+-------------------------
+
+Facil
+1 0 0 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0
+
+IDA*
+Movements: 17
+Total states: 65
+Time: 0.000156 seconds
+States per second: 416667
+5.64257 Gb
+
+A* 
+Movements: 17
+States generated: 34
+Time: 0.000177 seconds
+States generated per second: 192090
+11.3153 Gb
+
+-------------------------
+
+Medio
+0 0 1 0 0 1 0 0 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 
+
+IDA*
+Movements: 21
+Total states: 82
+Time: 0.000158 seconds
+States per second: 518987
+5.63261 Gb
+
+A*
+Movements: 21
+States generated: 42
+Time: 0.000201 seconds
+States generated per second: 208955
+11.2688 Gb
+
+-------------------------
+
+Medio 
+0 1 0 0 0 1 0 0 1 0 0 0 0 0 0 1 0 0 1 0 1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 
+
+IDA*
+Movements: 35
+Total states: 139
+Time: 0.000215 seconds
+States per second: 646512
+5.63276 Gb
+
+A*
+Movements: 35
+States generated: 47
+Time: 0.000224 seconds
+States generated per second: 209821
+11.2651 Gb
+
+------------------------
+
+Dificil
+0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 
+
+IDA*
+No solution found.
+Total states: 629742785
+Time: 1752.41 seconds
+States per second: 359358
+3.8348 Gb
+
+A*
+Movements: 87
+States generated: 608303
+Time: 5.55605 seconds
+States generated per second: 109485
+11.6389 Gb

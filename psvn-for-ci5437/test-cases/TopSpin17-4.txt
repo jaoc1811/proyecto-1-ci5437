@@ -1,0 +1,92 @@
+Facil
+0 1 4 5 9 8 11 10 6 14 13 12 7 15 2 3 16
+
+IDA*
+Movements: 5
+Total states: 31
+Time: 4.1e-05 seconds
+States per second: 756098
+3.18985 Gb
+
+A*
+Movements: 5
+States generated: 11
+Time: 0.00013 seconds
+States generated per second: 84615.4
+3.19047 Gb
+
+-------------------------
+
+Facil
+15 3 5 4 2 9 10 11 6 14 13 12 8 0 1 7 16 
+
+IDA*
+Movements: 10
+Total states: 537
+Time: 0.000251 seconds
+States per second: 2.13944e+06
+3.19169 Gb
+
+A*
+Movements: 10
+States generated: 138
+Time: 0.001195 seconds
+States generated per second: 115481
+3.19345 Gb
+
+-------------------------
+
+Medio 
+0 10 3 7 6 5 12 9 8 13 14 1 4 11 2 15 16
+
+IDA*
+Movements: 13
+Total states: 2506285
+Time: 0.903241 seconds
+States per second: 2.77477e+06
+3.1862 Gb
+
+A*
+Movements: 13
+States generated: 203911
+Time: 2.14776 seconds
+States generated per second: 94941
+3.41086 Gb
+
+-------------------------
+
+Medio
+13 1 2 6 14 3 7 9 5 4 10 11 12 15 0 8 16
+
+IDA*
+Movements: 14
+Total states: 1447096
+Time: 0.502633 seconds
+States per second: 2.87903e+06
+3.193 Gb
+
+A* 
+Movements: 14
+States generated: 561444
+Time: 6.07786 seconds
+States generated per second: 92375.3
+3.7979 Gb
+
+------------------------
+
+Dificil
+2 9 3 14 13 15 5 7 11 12 1 4 0 10 6 8 16 
+
+IDA*
+Movements: 15
+Total states: 13708490
+Time: 5.10831 seconds
+States per second: 2.68357e+06
+3.18714 Gb
+
+A*
+Movements: 15
+States generated: 1004104
+Time: 11.7515 seconds
+States generated per second: 85444.4
+4.25993 Gb

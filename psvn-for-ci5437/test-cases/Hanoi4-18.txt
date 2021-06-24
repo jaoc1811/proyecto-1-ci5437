@@ -1,0 +1,92 @@
+Facil
+0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0
+
+IDA*
+Movements: 10
+Total states: 40
+Time: 7.7e-05 seconds
+States per second: 519481
+4.75388 Gb
+
+A*
+Movements: 10
+States generated: 16
+Time: 0.000119 seconds
+States generated per second: 134454
+4.75793 Gb
+
+-------------------------
+
+Facil
+0 0 1 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 
+
+IDA*
+Movements: 17
+Total states: 5777
+Time: 0.003089 seconds
+States per second: 1.87018e+06
+4.76101 Gb
+
+A* 
+Movements: 17
+States generated: 293
+Time: 0.001502 seconds
+States generated per second: 195073
+4.7546 Gb
+
+-------------------------
+
+Medio
+0 1 0 0 0 0 0 1 0 0 1 0 1 0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 
+
+IDA*
+Movements: 21
+Total states: 23767047
+Time: 11.4223 seconds
+States per second: 2.08075e+06
+4.75585 Gb
+
+A*
+Movements: 21
+States generated: 2908
+Time: 0.016301 seconds
+States generated per second: 178394
+4.74997 Gb
+
+-------------------------
+
+Medio 
+0 0 1 0 0 1 0 0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 
+
+IDA*
+No solution found.
+Total states: 3995016587
+Time: 1803.19 seconds
+States per second: 2.21552e+06
+5.24627 Gb
+
+A*
+Movements: 34
+States generated: 182324
+Time: 1.62177 seconds
+States generated per second: 112423
+9.64393 Gb
+
+------------------------
+
+Dificil
+0 0 0 1 1 0 0 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0 1 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0
+
+IDA*
+No solution found.
+Total states: 4020521391
+Time: 1813.11 seconds
+States per second: 2.21747e+06
+5.90389 Gb
+
+A*
+Movements: 50
+States generated: 4150971
+Time: 52.9804 seconds
+States generated per second: 78349.3
+7.60767 Gb

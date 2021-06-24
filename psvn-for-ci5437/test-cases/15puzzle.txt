@@ -1,11 +1,143 @@
-Estado dificil
+Muy Facil 
+13 8 14 3 9 1 b 7 15 5 4 10 12 2 6 11
+
+IDA* PDB
+Movements: 41
+States generated: 103896
+Time: 0.025864 seconds
+States generated per second: 4.01701e+06
+0.0657463 Gb
+
+A* PDB
+Movements: 41
+States generated: 36562
+Time: 0.068773 seconds
+States generated per second: 531633
+0.0724068 Gb
+
+IDA* Manhattan
+Movements: 41
+States generated: 755897
+Time: 3.37376 seconds
+States generated per second: 224052
+0.0310898 Gb
+
+A* Manhattan
+Movements: 41
+States generated: 199300
+Time: 2.98241 seconds
+States generated per second: 66825
+0.0472679 Gb
+
+-------------------------------------
+
+Facil
+10 9 3 11 b 13 2 14 5 6 4 7 8 15 1 12
+
+IDA* PDB
+Movements: 49
+States generated: 4993802
+Time: 1.18871 seconds
+States generated per second: 4.20103e+06
+0.12112 Gb
+
+A* PDB
+Movements: 49
+States generated: 1952281
+Time: 6.75256 seconds
+States generated per second: 289117
+0.543148 Gb
+
+IDA* Manhattan
+Movements: 49
+States generated: 14084532
+Time: 62.3114 seconds
+States generated per second: 226035
+0.00 Gb
+
+A* Manhattan
+Movements: 49
+States generated: 5323478
+Time: 87.1404 seconds
+States generated per second: 61090.8
+1.29068 Gb
+
+-------------------------------------
+
+Facil
+7 1 2 4 8 3 6 11 10 15 b 5 14 12 13 9
+
+IDA* PDB
+Movements: 50
+States generated: 27211387
+Time: 6.20045 seconds
+States generated per second: 4.38861e+06
+0.115662 Gb
+
+A* PDB
+Movements: 50
+States generated: 5809142
+Time: 23.7837 seconds
+States generated per second: 244249
+1.47621 Gb
+
+IDA* Manhattan
+Movements: 50
+States generated: 248393754
+Time: 1059.36 seconds
+States generated per second: 234474
+0.225655 Gb
+
+A* Manhattan
+Movements: 50
+States generated: 26161682
+Time: 434.13 seconds
+States generated per second: 60262.3
+6.276 Gb
+
+-------------------------------------
+
+Medio
+3 15 2 5 11 6 4 7 12 9 1 b 13 14 10 8
+
+IDA* PDB
+Movements: 55
+States generated: 156911686
+Time: 36.5663 seconds
+States generated per second: 4.29116e+06
+0.0732346 Gb
+
+A* PDB
+Movements: 55
+States generated: 26142982
+Time: 136.171 seconds
+States generated per second: 191986
+4.58496 Gb
+
+IDA* Manhattan
+No solution found.
+States generated: 425522337
+Time: 1832.41 seconds
+States generated per second: 232221
+0.00 Gb
+
+A* Manhattan
+No solution found.
+States generated: 46600000
+Time: 776.29 seconds
+States generated per second: 60029.1
+11.9626 Gb
+
+-------------------------------------
+
+Dificil
 15 2 12 11 14 13 9 5 1 3 8 7 b 10 6 4
 
 IDA* PDB
 Movements: 65
-Total states: 1629636925
+States generated: 1629636925
 Time: 386.586 seconds
-States per second: 4.21546e+06
+States generated per second: 4.21546e+06
 1.07502 Gb
 
 A* PDB
@@ -17,9 +149,9 @@ States generated per second: 175818
 
 IDA* Manhattan
 No solution found.
-Total states: 478538337
+States generated: 478538337
 Time: 1791.21 seconds
-States per second: 267160
+States generated per second: 267160
 0.0547333 Gb
 
 A* Manhattan
@@ -28,4 +160,3 @@ States generated: 48000000
 Time: 832.368 seconds
 States generated per second: 57666.8
 12.4159 Gb
-
