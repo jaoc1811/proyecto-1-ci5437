@@ -18,11 +18,11 @@ Consideramos los siguientes problemas:
 
 ```
 cd psvn-for-ci5437/<nombre_problema>
-make <nombre_problema>.<aStar>
-make <nombre_problema>.<idaStar>
-make <nombre_problema>/<absi>.pdb #para cada absi en el directorio
-./<nombre_problema>.<aStar>
-./<nombre_problema>.<idaStar>
+make <nombre_problema>.aStar
+make <nombre_problema>.idaStar
+make <nombre_problema>/abs{i}.pdb #para cada abs{i}.txt en el directorio
+./<nombre_problema>.aStar
+./<nombre_problema>.idaStar
 ```
 
 # &Aacute;rboles de b&uacute;squeda
