@@ -72,7 +72,6 @@ node *aStar(state_t init, unsigned (*h)(state_t *))
         sysinfo (&memInfo);
         exitMemoryCheck = memInfo.freeram * memInfo.mem_unit;
         exitMemoryCheck /= (1024*1024*1024);
-        cout << exitMemoryCheck << endl;
         if(exitMemoryCheck <= 0.5)
         {
           handler_ctrl_c(1);
